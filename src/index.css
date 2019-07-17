@@ -1,0 +1,335 @@
+/* Table of Contents */
+/* 1. Root vars */
+/* 2. General Styles */
+/* 3. Tree node styles */
+/* 4. Skeleton loading forms */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* 2. General Styles */
+body {
+  margin: 2em;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.container-right {
+  margin: 20px auto;
+  padding: 20px 1em;
+  max-width: 800px;
+}
+
+.container-left {
+    margin: 20px auto;
+    padding: 20px 1em;
+    max-width: 400px;
+}
+
+h1 {
+  font-size: 26px;
+  line-height: 36px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  color: #aaa;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 20px;
+  color: #aaa;
+}
+
+h6 {
+  font-size: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type='text'] {
+  outline: none;
+  display: block;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  height: 32px;
+}
+
+.left-container input {
+  width: 60%;
+}
+
+.right-container input {
+  width: 100%;
+}
+
+select {
+  outline: none;
+  display: block;
+  border: 1px solid #eee;
+  height: 32px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.right-container select {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+tr:nth-of-type(even) {
+  background: #eee;
+}
+
+tr .hint {
+  background: #ffffff;
+}
+th {
+  text-align: center;
+  padding: 0.25em;
+}
+
+td {
+  padding: 0.25em;
+}
+
+.form-control {
+  margin-bottom: 15px;
+}
+
+.tab-btn-group {
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+
+.tab {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  transition: all 200ms ease-out;
+  background-color: #eee;
+}
+
+.tab + .tab {
+  border-left: none;
+}
+
+.tab:hover:not(.tab-active) {
+  cursor: pointer;
+  background-color: #f7f7f7;
+}
+
+.tab-active {
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.tab-container {
+  padding-top: 1em;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-action {
+  text-align: center;
+  flex: 1 1 0;
+  margin-top: auto;
+}
+
+@media (min-width: 900px) {
+  .main-left,
+  .main-right {
+    display: inline-block;
+    padding: 1em 0;
+    vertical-align: top;
+  }
+
+  .main-left {
+    height: 100vh;
+  }
+
+  .main-right {
+    width: 57vw !important;
+    /* margin-left: 7vw; */
+    float: right;
+  }
+}
+
+.report {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 1000;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(100%);
+}
+
+.report.in {
+  transform: translateX(0%);
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  pointer-events: none;
+  z-index: 500;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.overlay.in {
+  opacity: 1;
+}
+
+.half {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+.third {
+  display: inline-block;
+  vertical-align: top;
+  width: 33%;
+}
+
+dt,
+dd {
+  display: inline;
+}
+
+dd {
+  margin-left: 0.5em;
+}
+
+dd:after {
+  display: block;
+  content: '';
+}
+
+/* 3. Tree node styles */
+
+.tree-node-arrow {
+  transition: all 0.1s;
+}
+
+.tree-node-arrow {
+  cursor: pointer;
+  margin-right: 6px;
+  display: inline-block;
+  user-select: none;
+}
+
+.tree-node-arrow:after {
+  content: '▾';
+}
+
+.tree-node-hide {
+  transform: rotate(-90deg);
+}
+
+.tree-node-content {
+  margin-left: 1em;
+}
+
+.tree-node-untitled .tree-node-content {
+  margin-top: -38px;
+}
+
+.error, .msg {
+  border: 3px solid red !important;
+  width: 30% !important;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.msg {
+  color: red;
+  font-size: 8px;
+  text-align: center;
+}
+
+.flow-rate-directions {
+  width: 55vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hint {
+  background-color: #ffffff;
+}
+
+.header {
+  margin: 0;
+  padding: 0;
+  height: 5em;
+}
+
+/* Keeping it light, no bootstrap, so write our own button classes */
+.btn {
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0074d9;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  outline: none;
+  font-size: 14px;
+  margin: 12px 5px 12px 0px;
+}
+
+.btn:hover {
+  background-color: #0766b8;
+}
+
+.btn:active {
+  position: relative;
+  top: 2px;
+}
