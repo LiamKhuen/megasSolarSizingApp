@@ -1,10 +1,7 @@
 
 import React, {Component} from 'react';
 //import axios from 'axios'; ---Is defined but never used
-import {
-  batteriesRequired,
-  panelsRequired
-} from '../calc';
+import {batteriesRequired, panelsRequired} from '../calc';
 import motors from '../data/motors'
 import plungers from '../data/plungers'
 import controls from '../data/controls'
