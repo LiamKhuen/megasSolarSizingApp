@@ -9,6 +9,7 @@ export function batteriesRequired(props) {
   // calculate pump load based desired flowRate and how long it is to run
   const currentDraw = (flowRate * slope + intercept) * runDuration * autonomy;
 
+  //Adding some commas since this is a return statement
   return (currentDraw/batteryCapacity);
 }
 
