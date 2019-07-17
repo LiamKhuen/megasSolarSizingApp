@@ -65,6 +65,7 @@ class Pressure extends Component {
     } = this.props;
     const slope = +row['Slope'];
     const intercept = +row['Y Intercept'];
+
     return batteriesRequired({
       autonomy, // # of days to run
       flowRate, // Pump flow rate used to calculate load
