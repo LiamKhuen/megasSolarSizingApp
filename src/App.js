@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 //Changed from './App.css' to './index.css'
-import './index.css';
+//import './index.css';   ---Commented out for testing purposes
 import RequiredInfo from './sections/required-info';
 import RunOptions from './sections/run-options';
 import Pressure from './sections/pressure';
