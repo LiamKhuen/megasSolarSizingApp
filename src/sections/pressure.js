@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import axios from 'axios';
+//import axios from 'axios'; ---Is defined but never used
 import {
   batteriesRequired,
   panelsRequired
@@ -45,7 +45,7 @@ class Pressure extends Component {
   }
 
   validationHandler(e) {
-    const value = parseInt(e.target.value);
+    const value = parseInt(e.target.value); //Compiler says there is a missing 'radix' parameter
 
     // FlowRate should be greater than 0 and less than 200
     if ( value < 0 || value > 200 ) {
