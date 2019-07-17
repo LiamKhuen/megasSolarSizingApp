@@ -213,7 +213,6 @@ class App extends Component {
                       setFilterMotor = { this.setFilterMotor }
                       setFilterPlunger = { this.setFilterPlunger }
                       setFilterHead = { this.setFilterHead }
-                      setFlowRate = { this.setFlowRate }
                       setFilterControl = { this.setFilterControl } />
                     {' '}
                 </TabContent>
