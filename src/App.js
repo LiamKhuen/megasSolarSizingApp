@@ -204,7 +204,6 @@ class App extends Component {
                 </TabButtonGroup>
                   {' '}
                   <TabContent active = { this.state.tab === 'pressure'} >
-//The extra flowRate prop was in this section
                     <Pressure
                       sizing = { this.state.sizing}
                       { ...this.state }
