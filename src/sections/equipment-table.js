@@ -55,7 +55,7 @@ class EquipmentTable extends Component {
     const slope =+ row['Slope'];
     const intercept =+ row['Y Intercept'];
     const maxFlowRate =+ row['Flow_max (GPD)'];
-    const flowRate =+ this.props.flowRate;
+    const flowRate =+ this.flowRate; //--- Was: this.props.flowRate
 
     return flowPerDay({
       slope, // data from pump to calculate load based on flow
