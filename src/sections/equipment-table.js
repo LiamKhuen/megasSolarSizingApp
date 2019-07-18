@@ -66,6 +66,9 @@ class EquipmentTable extends Component {
   }
 
 
+//I do not think this method is necessary. For the equipment tab the user sets the panels, thus to list out a Min and Avg # of panels
+//does not makes sense. Will ask Dave first.
+
   calcLimiter(sunlightType) {
     return (row, flowRate) => {
 
@@ -76,7 +79,7 @@ class EquipmentTable extends Component {
         runDuration,
         safetyFactor,
         panel,
-        panels,
+        panelCount,
         location,
       } = this.props;
 
@@ -84,9 +87,9 @@ class EquipmentTable extends Component {
       //const intercept =+ row['Y Intercept'];
       //const currentPerDay = {};
       //^^^Removed because not used^^^
-      
+
       const panelOutput = panelsDailyOutput({
-        numberOfPanels: panels, // number of panels
+        numberOfPanels: panelCount, // number of panels
         panelType: panel, // Type of Panel 60W
         location: location, // Location object { }
         sunlightType, // Min or Average
