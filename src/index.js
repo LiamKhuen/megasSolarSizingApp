@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react'; //---Took out { Component } from import since unused
 import ReactDOM from 'react-dom';
 // for main app
 import './index.css';
