@@ -50,7 +50,7 @@ class Equipment extends Component {
             <label>Batteries:</label>
             <input
               type="text"
-              value={this.props.batteries}
+              value={this.props.batteryCount}
               onChange={this.changeHandler.bind(this, 'setBatteries')}
             />
           </div>

@@ -22,7 +22,7 @@ class EquipmentTable extends Component {
     super(props);
 
     this.state = {
-      motors : motors,
+      motors: motors,
       plungers: plungers,
       controls: controls,
       heads: heads,
@@ -74,6 +74,7 @@ class EquipmentTable extends Component {
 
       const {
         autonomy,
+        batteryCount,
         batteryEfficiency,
         batterySize,
         runDuration,
@@ -82,34 +83,34 @@ class EquipmentTable extends Component {
         panelCount,
         location,
       } = this.props;
-
       //const slope =+ row['Slope'];
       //const intercept =+ row['Y Intercept'];
       //const currentPerDay = {};
       //^^^Removed because not used^^^
-
-      const panelOutput = panelsDailyOutput({
+//isPanel checks if the panel is limiting the setup for an equipment based sizing
+      const isPanel = panelsDailyOutput({
         numberOfPanels: panelCount, // number of panels
         panelType: panel, // Type of Panel 60W
         location: location, // Location object { }
         sunlightType, // Min or Average
         safetyFactor: safetyFactor, // autonomy safety factor used to derate battery
       });
-      const batteries = batteries * (batterySize * (batteryEfficiency / 100.0) / safetyFactor) / autonomy;
-      const pump = runDuration * row['Flow_max (GPD)'];
+//isBatteries checks if the batteries are limiting the setup for an equipment based sizing
+      const isBatteries = batteryCount * (batterySize * (batteryEfficiency / 100.0) / safetyFactor) / autonomy;
+//isPump checks if the pump is limiting the setup for an equipment based sizing
+      const isPump = runDuration * row['Flow_max (GPD)'];
 
-      if (panelOutput < batteries && panelOutput < pump) {
-        return `panels (${panelOutput}, ${batteries}, ${pump})`;
+//Logic for letting the user know what is limiting them.
+      if (isPanel < isBatteries && isPanel < isPump) {
+        return 'The panels are your limiter';
       }
-      else if (batteries < panelOutput && batteries < pump) {
-        return `batteries (${panelOutput}, ${batteries}, ${pump})`;
+      else if (isBatteries < isPanel && isBatteries < isPump) {
+        return 'The batteries are your limiter';
       }
       else {
-        return `pump (${panelOutput}, ${batteries}, ${pump})`;
+        return 'The pump is your limiter';
       }
-
     };
-
   }
 
 
