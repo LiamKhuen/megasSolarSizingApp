@@ -18,7 +18,7 @@ export function panelsRequired(props) {
   // Solar panel output in A
   const panelOutput = panelType;
   // Sunlight received in hours
-  const sunlight =+ props.location[sunlightType];
+  const sunlight =+ location[sunlightType];
   const dailyOutput = (panelOutput * sunlight) / safetyFactor;
   // Calc current draw (Adays)
   const currentDraw = (flowRate * slope + intercept) * runDuration;
@@ -33,9 +33,11 @@ export function flowPerDay(props) {
 
   if (dailyFlowRate > maxFlowRate) {
     return maxFlowRate;
+  } else {
+    console.log('dailyFlowRate  ' + dailyFlowRate);
+    return dailyFlowRate;
   }
-  console.log('dailyFlowRate  ' + dailyFlowRate);
-  return dailyFlowRate;
+
 }
 
 export function panelsDailyOutput(props) {
@@ -44,7 +46,7 @@ export function panelsDailyOutput(props) {
   // Solar panel output in A
   const panelOutput = panelType;
   // Sunlight received in hours
-  const sunlight = +location[sunlightType];
+  const sunlight =+ location[sunlightType];
   const dailyOutput = ((panelOutput * sunlight) / safetyFactor) * numberOfPanels;
 
   return dailyOutput;
