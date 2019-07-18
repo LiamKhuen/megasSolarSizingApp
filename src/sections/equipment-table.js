@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { batteriesRequired, panelsRequired, flowPerDay, panelsDailyOutput } from '../calc';
+import { flowPerDay, panelsDailyOutput } from '../calc'; //--- Removed batteriesRequired and panelsRequired since they are unused
 import sizing from '../data/sizing';
 import motors from '../data/motors';
 import plungers from '../data/plungers';
@@ -16,6 +16,7 @@ const optsFactory = list =>
     );
   });
 
+
 class EquipmentTable extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +26,7 @@ class EquipmentTable extends Component {
       plungers: plungers,
       controls: controls,
       heads: heads,
-      panels: panels
+      panels: panels,
     }
 
     this.clearFilters = this.clearFilters.bind(this);
@@ -34,6 +35,7 @@ class EquipmentTable extends Component {
     this.calcLimitAvgSun = this.calcLimiter('Sunlight, Avg').bind(this);
   }
 
+
   clearFilters() {
     this.props.setFilterHead('');
     this.props.setFilterMotor('');
@@ -41,17 +43,19 @@ class EquipmentTable extends Component {
     this.props.setFilterControl('');
   }
 
+
   changeHandler(method, e) {
     if (this.props[method]) {
       this.props[method](e.target.value);
     }
   }
 
+
   calcFlow(row) {
-    const slope = +row['Slope'];
-    const intercept = +row['Y Intercept'];
-    const maxFlowRate = +row['Flow_max (GPD)'];
-    const flowRate = +this.props.flowRate;
+    const slope =+ row['Slope'];
+    const intercept =+ row['Y Intercept'];
+    const maxFlowRate =+ row['Flow_max (GPD)'];
+    const flowRate =+ this.props.flowRate;
 
     return flowPerDay({
       slope, // data from pump to calculate load based on flow
@@ -61,8 +65,10 @@ class EquipmentTable extends Component {
     });
   }
 
+
   calcLimiter(sunlightType) {
     return (row, flowRate) => {
+
       const {
         autonomy,
         batteryEfficiency,
@@ -70,39 +76,43 @@ class EquipmentTable extends Component {
         runDuration,
         safetyFactor,
         panel,
+        panels,
         location,
       } = this.props;
-      const slope = +row['Slope'];
-      const intercept = +row['Y Intercept'];
-      const currentPerDay = {};
 
-      const panels = panelsDailyOutput({
-        numberOfPanels: this.props.panels, // number of panels
-        panelType: this.props.panel, // Type of Panel 60W
-        location: this.props.location, // Location object { }
+      //const slope =+ row['Slope'];
+      //const intercept =+ row['Y Intercept'];
+      //const currentPerDay = {};
+      //^^^Removed because not used^^^
+      
+      const panelOutput = panelsDailyOutput({
+        numberOfPanels: panels, // number of panels
+        panelType: panel, // Type of Panel 60W
+        location: location, // Location object { }
         sunlightType, // Min or Average
-        safetyFactor: this.props.safetyFactor, // autonomy safety factor used to derate battery
+        safetyFactor: safetyFactor, // autonomy safety factor used to derate battery
       });
-      const batteries =
-        this.props.batteries *
-        (batterySize * (batteryEfficiency / 100.0) / safetyFactor) /
-        this.props.autonomy;
+      const batteries = batteries * (batterySize * (batteryEfficiency / 100.0) / safetyFactor) / autonomy;
+      const pump = runDuration * row['Flow_max (GPD)'];
 
-      const pump = this.props.runDuration * row['Flow_max (GPD)'];
+      if (panelOutput < batteries && panelOutput < pump) {
+        return `panels (${panelOutput}, ${batteries}, ${pump})`;
+      }
+      elseif (batteries < panelOutput && batteries < pump) {
+        return `batteries (${panelOutput}, ${batteries}, ${pump})`;
+      }
+      else {
+        return `pump (${panelOutput}, ${batteries}, ${pump})`;
+      }
 
-      if (panels < batteries && panels < pump) {
-        return `panels (${panels}, ${batteries}, ${pump})`;
-      }
-      if (batteries < panels && batteries < pump) {
-        return `batteries (${panels}, ${batteries}, ${pump})`;
-      }
-      return `pump (${panels}, ${batteries}, ${pump})`;
     };
+
   }
+
 
   render() {
     const motorOpts = optsFactory(this.state.motors);
-    const plungerOpts = optsFactory(Object.keys(this.state.plungers));
+    const plungerOpts = optsFactory(this.state.plungers); //--- Was:const plungerOpts = optsFactory(Object.keys(this.state.plungers));
     const controlOpts = optsFactory(this.state.controls);
     const headOpts = optsFactory(this.state.heads);
 
