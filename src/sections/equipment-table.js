@@ -101,7 +101,7 @@ class EquipmentTable extends Component {
       if (panelOutput < batteries && panelOutput < pump) {
         return `panels (${panelOutput}, ${batteries}, ${pump})`;
       }
-      elseif (batteries < panelOutput && batteries < pump) {
+      else if (batteries < panelOutput && batteries < pump) {
         return `batteries (${panelOutput}, ${batteries}, ${pump})`;
       }
       else {
