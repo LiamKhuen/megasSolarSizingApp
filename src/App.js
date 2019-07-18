@@ -33,7 +33,7 @@ class App extends Component {
       flowRate: 0,
       panel: 60,
 
-      batteries: 0,
+      batteryCount: 0,
       panels: 0,
 
       filterMotor: '',
@@ -59,7 +59,7 @@ class App extends Component {
     this.setPanel = this.setter.bind(this, 'panel');
 
     this.setPanels = this.setter.bind(this, 'panels');
-    this.setBatteries = this.setter.bind(this, 'batteries');
+    this.setBatteries = this.setter.bind(this, 'batteryCount');
 
     this.setFilterMotor = this.setter.bind(this, 'filterMotor');
     this.setFilterPlunger = this.setter.bind(this, 'filterPlunger');
