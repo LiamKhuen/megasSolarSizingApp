@@ -59,13 +59,13 @@ class SunTable extends Component {
     //   console.log(snapshot.val()[panel_size]);
     // })
     return panelsRequired({
-      autonomy: this.props.autonomy, // # of days to run
-      flowRate: this.props.flowRate, // Pump flow rate used to calculate load
-      safetyFactor: this.props.safetyFactor, // autonomy safety factor used to derate battery
-      runDuration: this.props.runDuration, // number of hours to run a day (default is 24)
-      sunlightType: this.props.sunlightType, // Min or Average
+      autonomy: autonomy, // # of days to run
+      flowRate: flowRate, // Pump flow rate used to calculate load
+      safetyFactor: safetyFactor, // autonomy safety factor used to derate battery
+      runDuration: runDuration, // number of hours to run a day (default is 24)
+      sunlightType: sunlightType, // Min or Average
       panels: panel_size, // Type of Panel 60W
-      location: this.props.location, // Location object { }
+      location: location, // Location object { }
       slope, // data from pump to calculate load based on flow
       intercept,
     }).toFixed(2);
@@ -75,7 +75,7 @@ class SunTable extends Component {
     const slope =+ this.props.data['Slope'];
     const intercept =+ this.props.data['Y Intercept'];
     const maxFlowRate =+ this.props.data['Flow_max (GPD)'];
-    const flowRate =+ this.props.flowRate;
+    const flowRate =+ flowRate;
 
     return flowPerDay({
       slope, // data from pump to calculate load based on flow
