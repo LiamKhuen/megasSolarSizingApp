@@ -37,12 +37,12 @@ class SunTable extends Component {
     const slope =+ this.props.data['Slope'];
     const intercept =+ this.props.data['Y Intercept'];
     return batteriesRequired({
-      autonomy: this.props.autonomy, // # of days to run
-      flowRate: this.props.flowRate, // Pump flow rate used to calculate load
-      batterySize: this.props.batterySize, // Battery in Amp Hours
-      batteryEfficiency: this.props.batteryEfficiency, // 0-100 used to derate battery
-      safetyFactor: this.props.safetyFactor, // autonomy safety factor used to derate battery
-      runDuration: this.props.runDuration, // number of hours to run a day (default is 24)
+      autonomy: autonomy, // # of days to run
+      flowRate: flowRate, // Pump flow rate used to calculate load
+      batterySize: batterySize, // Battery in Amp Hours
+      batteryEfficiency: batteryEfficiency, // 0-100 used to derate battery
+      safetyFactor: safetyFactor, // autonomy safety factor used to derate battery
+      runDuration: runDuration, // number of hours to run a day (default is 24)
       slope, // data from pump to calculate load based on flow
       intercept, // data from pump to calulate load based on flow
     });
