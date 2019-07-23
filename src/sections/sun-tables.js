@@ -63,8 +63,8 @@ class SunTable extends Component {
       flowRate: flowRate, // Pump flow rate used to calculate load
       safetyFactor: safetyFactor, // autonomy safety factor used to derate battery
       runDuration: runDuration, // number of hours to run a day (default is 24)
-      sunlightType: sunlightType, // Min or Average
-      panels: panel_size, // Type of Panel 60W
+      sunlightType: this.props.sunlightType, // Min or Average
+      panels: this.props.panel_size, // Type of Panel 60W
       location: location, // Location object { }
       slope, // data from pump to calculate load based on flow
       intercept,
