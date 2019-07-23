@@ -72,10 +72,10 @@ class SunTable extends Component {
   };
 
   getMaxGPD = numBatts => {
-    const slope = +this.props.data['Slope'];
-    const intercept = +this.props.data['Y Intercept'];
-    const maxFlowRate = +this.props.data['Flow_max (GPD)'];
-    const flowRate = +this.props.flowRate;
+    const slope =+ this.props.data['Slope'];
+    const intercept =+ this.props.data['Y Intercept'];
+    const maxFlowRate =+ this.props.data['Flow_max (GPD)'];
+    const flowRate =+ this.props.flowRate;
 
     return flowPerDay({
       slope, // data from pump to calculate load based on flow
