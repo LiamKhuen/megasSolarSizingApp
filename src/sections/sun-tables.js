@@ -34,8 +34,8 @@ class SunTable extends Component {
       runDuration,
     } = this.props;
 
-    const slope = +this.props.data['Slope'];
-    const intercept = +this.props.data['Y Intercept'];
+    const slope =+ this.props.data['Slope'];
+    const intercept =+ this.props.data['Y Intercept'];
     return batteriesRequired({
       autonomy: this.props.autonomy, // # of days to run
       flowRate: this.props.flowRate, // Pump flow rate used to calculate load
@@ -52,8 +52,8 @@ class SunTable extends Component {
     // this is a hack solution to pass a value to the sunlightType, need to redo later
     const { autonomy, runDuration, flowRate, safetyFactor, location } = this.props;
 
-    const slope = +this.props.data['Slope'];
-    const intercept = +this.props.data['Y Intercept'];
+    const slope =+ this.props.data['Slope'];
+    const intercept =+ this.props.data['Y Intercept'];
 
     // test_panel.on("value", function(snapshot){
     //   console.log(snapshot.val()[panel_size]);
